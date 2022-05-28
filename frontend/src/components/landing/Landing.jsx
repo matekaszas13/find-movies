@@ -3,6 +3,9 @@ import React, { useState } from 'react'
 
 const Landing = () => {
 
+  const [title, setTitle] = useState("");
+
+
   return (
     <div className="">
       <Typography variant="h5">Search your Movie</Typography>
