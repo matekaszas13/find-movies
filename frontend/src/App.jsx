@@ -1,11 +1,10 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Landing from "./components/landing/Landing";
 
 function App() {
   return (
-    <p>
-      Cleanedup React App
-    </p>
+    <Landing/>
   );
 }
 
