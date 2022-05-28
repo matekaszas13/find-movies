@@ -10,7 +10,6 @@ const client = new ApolloClient({
   cache: InMemoryCache(),
 });
 
-// https://tmdb.sandbox.zoosh.ie/dev/graphql
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
