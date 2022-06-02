@@ -9,16 +9,15 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import GetMovieByTitle from "../../apis/GetMovieByTitle";
-import TopRatedMovies from "../../apis/TopRatedMovies";
 
 const Landing = () => {
   const [title, setTitle] = useState("fight club");
 
   // const { error, loading, data } = TopRatedMovies();
 
-  // const { error, loading, data } = GetMovieByTitle(title);
+  const { error, loading, data } = GetMovieByTitle(title);
 
-  // console.log(data);
+  console.log(data);
 
   return (
     <div className="">
