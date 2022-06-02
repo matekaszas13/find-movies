@@ -8,12 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import TopRatedMovies from "../../apis/TopRatedMovies";
+import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
 
 const Landing = () => {
   const [title, setTitle] = useState("");
 
-  const { error, loading, data } = TopRatedMovies();
+  const [inputValue, setInputValue] = useState("");
+
+  const { error, loading, data } = UseMoviesByTitle(title);
+
+  console.log(data);
 
   return (
     <div className="">
@@ -22,36 +26,35 @@ const Landing = () => {
         id="movie-title-input"
         label="Movie Title Goes Here"
         variant="filled"
-      />
-      <Button variant="contained">Search</Button>
-      <div id="cards">
-        {loading ? (
-          <div>
-            <CircularProgress />
-          </div>
-        ) : (
-          data.topRatedMovies.map((movie) => (
-            <Card key={movie.id} sx={{ minWidth: 275 }}>
-              <CardContent>
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
-                >
-                  {movie.name}
-                </Typography>
 
+        onChange={e => setInputValue(e.target.value)}
+      />
+      <Button variant="contained" onClick={() => setTitle(inputValue)}>Search</Button>
+      <div id="cards">
+        {loading && <CircularProgress/>}
+        {data?.searchMovies?.map?.((movie) => (
+          <Card key={movie.id} sx={{ minWidth: 275 }}>
+            <CardContent>
+              <Typography
+                sx={{ fontSize: 14 }}
+                color="text.secondary"
+                gutterBottom
+              >
+                {movie.name}
+              </Typography>
+              {movie.genres.length > 0 ? (
                 <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  {movie.genres[0].name}
+                  {movie?.genres?.[0]?.name}
                 </Typography>
-                <Typography variant="body2">{movie.score}</Typography>
-              </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
-          ))
-        )}
+              ) : null}
+
+              <Typography variant="body2">{movie.score}</Typography>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
+        ))}
       </div>
     </div>
   );
