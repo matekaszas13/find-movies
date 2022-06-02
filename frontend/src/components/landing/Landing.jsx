@@ -13,7 +13,6 @@ import GetMovieByTitle from "../../apis/GetMovieByTitle";
 const Landing = () => {
   const [title, setTitle] = useState("fight club");
 
-  // const { error, loading, data } = TopRatedMovies();
 
   const { error, loading, data } = GetMovieByTitle(title);
 
@@ -29,7 +28,7 @@ const Landing = () => {
       />
       <Button variant="contained">Search</Button>
       <div id="cards">
-        {loading && "loading"}
+        {loading && <CircularProgress/>}
         {data?.searchMovies?.map?.((movie) => (
           <Card key={movie.id} sx={{ minWidth: 275 }}>
             <CardContent>
