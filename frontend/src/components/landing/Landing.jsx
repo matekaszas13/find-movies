@@ -1,14 +1,7 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
+import Movies from "./Movies";
 
 const Landing = () => {
   const [title, setTitle] = useState("");
@@ -26,36 +19,12 @@ const Landing = () => {
         id="movie-title-input"
         label="Movie Title Goes Here"
         variant="filled"
-
-        onChange={e => setInputValue(e.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <Button variant="contained" onClick={() => setTitle(inputValue)}>Search</Button>
-      <div id="cards">
-        {loading && <CircularProgress/>}
-        {data?.searchMovies?.map?.((movie) => (
-          <Card key={movie.id} sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {movie.name}
-              </Typography>
-              {movie.genres.length > 0 ? (
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                  {movie?.genres?.[0]?.name}
-                </Typography>
-              ) : null}
-
-              <Typography variant="body2">{movie.score}</Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small">Learn More</Button>
-            </CardActions>
-          </Card>
-        ))}
-      </div>
+      <Button variant="contained" onClick={() => setTitle(inputValue)}>
+        Search
+      </Button>
+      <Movies data={data} loading={loading} />
     </div>
   );
 };
