@@ -1,12 +1,4 @@
-import {
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  CircularProgress,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
 import Movies from "./Movies";
@@ -27,11 +19,12 @@ const Landing = () => {
         id="movie-title-input"
         label="Movie Title Goes Here"
         variant="filled"
-
-        onChange={e => setInputValue(e.target.value)}
+        onChange={(e) => setInputValue(e.target.value)}
       />
-      <Button variant="contained" onClick={() => setTitle(inputValue)}>Search</Button>
-      <Movies data={data} loading={loading}/>
+      <Button variant="contained" onClick={() => setTitle(inputValue)}>
+        Search
+      </Button>
+      <Movies data={data} loading={loading} />
     </div>
   );
 };
