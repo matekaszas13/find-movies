@@ -29,7 +29,7 @@ const Landing = () => {
 
         onChange={e => setInputValue(e.target.value)}
       />
-      <Button variant="contained">Search</Button>
+      <Button variant="contained" onClick={() => setTitle(inputValue)}>Search</Button>
       <div id="cards">
         {loading && <CircularProgress/>}
         {data?.searchMovies?.map?.((movie) => (
