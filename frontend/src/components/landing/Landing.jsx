@@ -8,13 +8,13 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import GetMovieByTitle from "../../apis/GetMovieByTitle";
+import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
 
 const Landing = () => {
   const [title, setTitle] = useState("fight club");
 
 
-  const { error, loading, data } = GetMovieByTitle(title);
+  const { error, loading, data } = UseMoviesByTitle(title);
 
   console.log(data);
 
