@@ -26,6 +26,8 @@ const Landing = () => {
         id="movie-title-input"
         label="Movie Title Goes Here"
         variant="filled"
+
+        onChange={e => setInputValue(e.target.value)}
       />
       <Button variant="contained">Search</Button>
       <div id="cards">
