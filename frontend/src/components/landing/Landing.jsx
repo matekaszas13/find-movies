@@ -11,8 +11,9 @@ import React, { useState } from "react";
 import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
 
 const Landing = () => {
-  const [title, setTitle] = useState("fight club");
+  const [title, setTitle] = useState("");
 
+  const [inputValue, setInputValue] = useState("");
 
   const { error, loading, data } = UseMoviesByTitle(title);
 
