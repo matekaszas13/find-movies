@@ -14,7 +14,7 @@ const Movies = ({data, loading}) => {
     <div id="cards">
         {loading && <CircularProgress/>}
         {data?.searchMovies?.map?.((movie) => (
-          <Card key={movie.id} sx={{ minWidth: 275 }}>
+          <Card className='card' key={movie.id} sx={{ minWidth: 275, maxWidth: 275 }}>
             <CardContent>
               <Typography
                 sx={{ fontSize: 14 }}
