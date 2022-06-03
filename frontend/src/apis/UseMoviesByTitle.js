@@ -1,4 +1,3 @@
-import React from 'react'
 import { gql, useQuery } from "@apollo/client";
 
 const GET_TOPRATED_MOVIES = gql`
@@ -14,9 +13,6 @@ const GET_TOPRATED_MOVIES = gql`
         }
     }
 `;
-
-// useMovieQueryByTitle rename hook
-//delete import react
 
 const GetMovieByTitle = (title) => {
     const { error, data, loading } = useQuery(GET_TOPRATED_MOVIES, {
