@@ -2,6 +2,7 @@ import { Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
 import Movies from "../movies/Movies";
+import "./Landing.css";
 
 const Landing = () => {
   const [title, setTitle] = useState("");
@@ -13,7 +14,7 @@ const Landing = () => {
   console.log(data);
 
   return (
-    <div className="">
+    <div className="landing">
       <Typography variant="h5">Search your Movie</Typography>
       <TextField
         id="movie-title-input"
