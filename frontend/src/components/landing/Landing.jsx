@@ -1,7 +1,7 @@
 import { Button, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import UseMoviesByTitle from "../../apis/UseMoviesByTitle";
-import Movies from "./Movies";
+import Movies from "../movies/Movies";
 
 const Landing = () => {
   const [title, setTitle] = useState("");
