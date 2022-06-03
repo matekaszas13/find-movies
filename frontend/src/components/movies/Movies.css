@@ -1,0 +1,14 @@
+#cards{
+    max-width: 80%;
+    margin: 2rem auto;
+}
+
+#cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.card{
+    margin-bottom: 1rem;
+}
