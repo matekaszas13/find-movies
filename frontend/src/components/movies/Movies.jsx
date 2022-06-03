@@ -7,6 +7,7 @@ import {
     CircularProgress,
     Typography,
   } from "@mui/material";
+import "./Movies.css";
 
 const Movies = ({data, loading}) => {
   return (
