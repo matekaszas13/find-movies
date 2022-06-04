@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -8,8 +8,17 @@ import {
   Typography,
 } from "@mui/material";
 import "./Movies.css";
+import GetWikipediaDatasByTitle from "../../apis/GetWikipediaDatasByTitle";
 
 const Movies = ({ data, loading }) => {
+  const [wikipediaPage, setWikipediaPage] = useState({});
+
+  const wikipediaDetails = async (title) => {
+    return await GetWikipediaDatasByTitle(title);
+  };
+
+  console.log(wikipediaPage);
+
   return (
     <div id="cards">
       {loading && <CircularProgress />}
