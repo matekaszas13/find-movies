@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import "./Movies.css";
 import GetWikipediaDatasByTitle from "../../apis/GetWikipediaDatasByTitle";
+import parse from "html-react-parser";
 
 const Movies = ({ data, loading }) => {
   const [wikipediaPage, setWikipediaPage] = useState({});
