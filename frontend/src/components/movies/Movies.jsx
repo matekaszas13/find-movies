@@ -14,6 +14,8 @@ import parse from "html-react-parser";
 const Movies = ({ data, loading }) => {
   const [wikipediaPage, setWikipediaPage] = useState({});
 
+  const [open, setOpen] = useState(false);
+
   const wikipediaDetails = async (title) => {
     return await GetWikipediaDatasByTitle(title);
   };
