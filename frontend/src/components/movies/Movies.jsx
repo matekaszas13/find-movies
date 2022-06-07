@@ -10,24 +10,29 @@ import {
 import "./Movies.css";
 import GetWikipediaDatasByTitle from "../../apis/GetWikipediaDatasByTitle";
 import parse from "html-react-parser";
+import Popup from "../popup/Popup";
 
 const Movies = ({ data, loading }) => {
   const [wikipediaPage, setWikipediaPage] = useState({});
 
   const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setWikipediaPage({});
+    setOpen(false);
+  };
+
   const wikipediaDetails = async (title) => {
     return await GetWikipediaDatasByTitle(title);
   };
 
-  console.log(wikipediaPage?.[0]);
-
-  // const htmlParser = parse(
-  //   `<span class="searchmatch">Captain</span> <span class="searchmatch">America</span>: <span class="searchmatch">The</span> <span class="searchmatch">Winter</span> <span class="searchmatch">Soldier</span> is a 2014 <span class="searchmatch">American</span> superhero film based on <span class="searchmatch">the</span> Marvel Comics character <span class="searchmatch">Captain</span> <span class="searchmatch">America</span>, produced by Marvel Studios`
-  // );
-
   return (
     <div id="cards">
+      <Popup wikipediaPageId={wikipediaPage?.[0]?.pageid} open={open} handleClose={handleClose} title={wikipediaPage?.[0]?.title} description={ wikipediaPage?.[0] != undefined ? parse(wikipediaPage?.[0]?.snippet) : "There is no information about this movie."} />
       {loading && <CircularProgress />}
       {data?.searchMovies?.map?.((movie) => (
         <Card
@@ -38,15 +43,19 @@ const Movies = ({ data, loading }) => {
           <CardContent>
             <CardActions>
               <Button
-                onClick={() =>
+                onClick={() => {
                   wikipediaDetails(movie.name).then((data) => {
                     setWikipediaPage(
                       data.query.search.filter(
-                        (obj) => obj.title.replace(/[-–]/g, "") === movie.name.replace(/[-–]/g, "")
+                        (obj) =>
+                          obj.title.replace(/[-–]/g, "") ===
+                          movie.name.replace(/[-–]/g, "")
                       )
                     );
-                  })
+                  });
+                  handleClickOpen();
                 }
+              }
                 size="small"
               >
                 <Typography
@@ -68,6 +77,7 @@ const Movies = ({ data, loading }) => {
             <Typography variant="body2">{movie.score}</Typography>
           </CardContent>
         </Card>
+        
       ))}
     </div>
   );
