@@ -11,8 +11,6 @@ const Landing = () => {
 
   const { error, loading, data } = UseMoviesByTitle(title);
 
-  console.log(data);
-
   return (
     <div >
       <div className="landing">
