@@ -11,21 +11,23 @@ const Landing = () => {
 
   const { error, loading, data } = UseMoviesByTitle(title);
 
+  console.log(error);
+
   return (
-    <div >
+    <div>
       <div className="landing">
         <Typography variant="h5">Search your Movie</Typography>
-      <TextField
-        id="movie-title-input"
-        label="Movie Title Goes Here"
-        variant="filled"
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-      <Button variant="contained" onClick={() => setTitle(inputValue)}>
-        Search
-      </Button>
+        <TextField
+          id="movie-title-input"
+          label="Movie Title Goes Here"
+          variant="filled"
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <Button variant="contained" onClick={() => setTitle(inputValue)}>
+          Search
+        </Button>
       </div>
-      
+
       <Movies data={data} loading={loading} />
     </div>
   );
