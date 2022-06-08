@@ -21,7 +21,7 @@ const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
       );
     };
     fetchImdbLink().then((data) => {
-      setImdbLink(data)
+      setImdbLink(data);
     });
   }, [title]);
 
@@ -66,7 +66,7 @@ const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
               <DialogContentText id="alert-dialog-description">
                 {description}
               </DialogContentText>
-            </DialogContent>{" "}
+            </DialogContent>
           </div>
         )}
       </Dialog>
