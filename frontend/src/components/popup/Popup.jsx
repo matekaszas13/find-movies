@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import GetImdbLinkFromWikipediaPageText from "../../apis/GetImdbLinkFromWikipediaPageText";
 
 const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
-  console.log(title);
 
   const [imdbLink, setImdbLink] = useState();
 
@@ -21,7 +20,7 @@ const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
       );
     };
     fetchImdbLink().then((data) => {
-      setImdbLink(data)
+      setImdbLink(data);
     });
   }, [title]);
 
@@ -66,7 +65,7 @@ const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
               <DialogContentText id="alert-dialog-description">
                 {description}
               </DialogContentText>
-            </DialogContent>{" "}
+            </DialogContent>
           </div>
         )}
       </Dialog>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -31,54 +31,68 @@ const Movies = ({ data, loading }) => {
   };
 
   return (
-    <div id="cards">
-      <Popup wikipediaPageId={wikipediaPage?.[0]?.pageid} open={open} handleClose={handleClose} title={wikipediaPage?.[0]?.title} description={ wikipediaPage?.[0] != undefined ? parse(wikipediaPage?.[0]?.snippet) : "There is no information about this movie."} />
-      {loading && <CircularProgress />}
-      {data?.searchMovies?.map?.((movie) => (
-        <Card
-          className="card"
-          key={movie.id}
-          sx={{ minWidth: 275, maxWidth: 275 }}
-        >
-          <CardContent>
-            <CardActions>
-              <Button
-                onClick={() => {
-                  wikipediaDetails(movie.name).then((data) => {
-                    setWikipediaPage(
-                      data.query.search.filter(
-                        (obj) =>
-                          obj.title.replace(/[-–]/g, "") ===
-                          movie.name.replace(/[-–]/g, "")
-                      )
-                    );
-                  });
-                  handleClickOpen();
-                }
-              }
-                size="small"
-              >
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
+    <div>
+      <Popup
+        wikipediaPageId={wikipediaPage?.[0]?.pageid}
+        open={open}
+        handleClose={handleClose}
+        title={wikipediaPage?.[0]?.title}
+        description={
+          wikipediaPage?.[0] !== undefined
+            ? parse(wikipediaPage?.[0]?.snippet)
+            : "There is no information about this movie."
+        }
+      />
+      <div id="cards">
+        {loading && <CircularProgress />}
+        {data?.searchMovies?.map?.((movie) => (
+          <Card
+            className="card"
+            key={movie.id}
+            sx={{ minWidth: 275, maxWidth: 275 }}
+          >
+            <CardContent>
+              <CardActions>
+                <Button
+                  onClick={() => {
+                    wikipediaDetails(movie.name).then((data) => {
+                      setWikipediaPage(
+                        data.query.search.filter(
+                          (obj) =>
+                            obj.title.replace(/[-–]/g, "") ===
+                            movie.name.replace(/[-–]/g, "")
+                        )
+                      );
+                    });
+                    handleClickOpen();
+                  }}
+                  size="small"
                 >
-                  {movie.name}
+                  <Typography
+                    sx={{ fontSize: 14 }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    {movie.name}
+                  </Typography>
+                </Button>
+              </CardActions>
+
+              {movie.genres.length > 0 ? (
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  {movie?.genres?.[0]?.name}
                 </Typography>
-              </Button>
-            </CardActions>
+              ) : (
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  There is no category
+                </Typography>
+              )}
 
-            {movie.genres.length > 0 ? (
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                {movie?.genres?.[0]?.name}
-              </Typography>
-            ) : null}
-
-            <Typography variant="body2">{movie.score}</Typography>
-          </CardContent>
-        </Card>
-        
-      ))}
+              <Typography variant="body2">{movie.score}</Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 };

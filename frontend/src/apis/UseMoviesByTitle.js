@@ -14,7 +14,7 @@ const GET_TOPRATED_MOVIES = gql`
     }
 `;
 
-const GetMovieByTitle = (title) => {
+const UseMoviesByTitle = (title) => {
     const { error, data, loading } = useQuery(GET_TOPRATED_MOVIES, {
         variables: {
             title
@@ -24,4 +24,4 @@ const GetMovieByTitle = (title) => {
     return { error, data, loading };
 }
 
-export default GetMovieByTitle
+export default UseMoviesByTitle
