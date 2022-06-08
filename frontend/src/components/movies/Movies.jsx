@@ -32,7 +32,17 @@ const Movies = ({ data, loading }) => {
 
   return (
     <div id="cards">
-      <Popup wikipediaPageId={wikipediaPage?.[0]?.pageid} open={open} handleClose={handleClose} title={wikipediaPage?.[0]?.title} description={ wikipediaPage?.[0] !== undefined ? parse(wikipediaPage?.[0]?.snippet) : "There is no information about this movie."} />
+      <Popup
+        wikipediaPageId={wikipediaPage?.[0]?.pageid}
+        open={open}
+        handleClose={handleClose}
+        title={wikipediaPage?.[0]?.title}
+        description={
+          wikipediaPage?.[0] !== undefined
+            ? parse(wikipediaPage?.[0]?.snippet)
+            : "There is no information about this movie."
+        }
+      />
       {loading && <CircularProgress />}
       {data?.searchMovies?.map?.((movie) => (
         <Card
@@ -54,8 +64,7 @@ const Movies = ({ data, loading }) => {
                     );
                   });
                   handleClickOpen();
-                }
-              }
+                }}
                 size="small"
               >
                 <Typography
@@ -77,7 +86,6 @@ const Movies = ({ data, loading }) => {
             <Typography variant="body2">{movie.score}</Typography>
           </CardContent>
         </Card>
-        
       ))}
     </div>
   );
