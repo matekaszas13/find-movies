@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import GetImdbLinkFromWikipediaPageText from "../../apis/GetImdbLinkFromWikipediaPageText";
 
 const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
-  console.log(title);
 
   const [imdbLink, setImdbLink] = useState();
 
