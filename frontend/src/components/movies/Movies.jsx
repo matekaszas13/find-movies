@@ -44,57 +44,56 @@ const Movies = ({ data, loading }) => {
         }
       />
       <div id="cards">
-      {loading && <CircularProgress />}
-      {data?.searchMovies?.map?.((movie) => (
-        <Card
-          className="card"
-          key={movie.id}
-          sx={{ minWidth: 275, maxWidth: 275 }}
-        >
-          <CardContent>
-            <CardActions>
-              <Button
-                onClick={() => {
-                  wikipediaDetails(movie.name).then((data) => {
-                    setWikipediaPage(
-                      data.query.search.filter(
-                        (obj) =>
-                          obj.title.replace(/[-–]/g, "") ===
-                          movie.name.replace(/[-–]/g, "")
-                      )
-                    );
-                  });
-                  handleClickOpen();
-                }}
-                size="small"
-              >
-                <Typography
-                  sx={{ fontSize: 14 }}
-                  color="text.secondary"
-                  gutterBottom
+        {loading && <CircularProgress />}
+        {data?.searchMovies?.map?.((movie) => (
+          <Card
+            className="card"
+            key={movie.id}
+            sx={{ minWidth: 275, maxWidth: 275 }}
+          >
+            <CardContent>
+              <CardActions>
+                <Button
+                  onClick={() => {
+                    wikipediaDetails(movie.name).then((data) => {
+                      setWikipediaPage(
+                        data.query.search.filter(
+                          (obj) =>
+                            obj.title.replace(/[-–]/g, "") ===
+                            movie.name.replace(/[-–]/g, "")
+                        )
+                      );
+                    });
+                    handleClickOpen();
+                  }}
+                  size="small"
                 >
-                  {movie.name}
+                  <Typography
+                    sx={{ fontSize: 14 }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    {movie.name}
+                  </Typography>
+                </Button>
+              </CardActions>
+
+              {movie.genres.length > 0 ? (
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  {movie?.genres?.[0]?.name}
                 </Typography>
-              </Button>
-            </CardActions>
+              ) : (
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  There is no category
+                </Typography>
+              )}
 
-            {movie.genres.length > 0 ? (
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                {movie?.genres?.[0]?.name}
-              </Typography>
-            ) : (
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                There is no category
-              </Typography>
-            )}
-
-            <Typography variant="body2">{movie.score}</Typography>
-          </CardContent>
-        </Card>
-      ))}
+              <Typography variant="body2">{movie.score}</Typography>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
     </div>
-    </div>
-    
   );
 };
 
