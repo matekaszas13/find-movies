@@ -12,7 +12,7 @@ import GetWikipediaDatasByTitle from "../../apis/GetWikipediaDatasByTitle";
 import parse from "html-react-parser";
 import Popup from "../popup/Popup";
 
-const Movies = ({ data, loading }) => {
+const Movies = ({ data, loading, error}) => {
   const [wikipediaPage, setWikipediaPage] = useState({});
 
   const [open, setOpen] = useState(false);
@@ -43,6 +43,15 @@ const Movies = ({ data, loading }) => {
             : "There is no information about this movie."
         }
       />
+      <div id="cards">
+        {error !== undefined ? <Typography
+                    sx={{ fontSize: 14 }}
+                    color="text.secondary"
+                    gutterBottom
+                  >
+                    Search for a movie!
+                  </Typography> : null}
+      </div>
       <div id="cards">
         {loading && <CircularProgress />}
         {data?.searchMovies?.map?.((movie) => (
