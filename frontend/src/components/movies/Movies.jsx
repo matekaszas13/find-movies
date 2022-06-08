@@ -31,7 +31,7 @@ const Movies = ({ data, loading }) => {
   };
 
   return (
-    <div id="cards">
+    <div>
       <Popup
         wikipediaPageId={wikipediaPage?.[0]?.pageid}
         open={open}
@@ -43,6 +43,7 @@ const Movies = ({ data, loading }) => {
             : "There is no information about this movie."
         }
       />
+      <div id="cards">
       {loading && <CircularProgress />}
       {data?.searchMovies?.map?.((movie) => (
         <Card
@@ -92,6 +93,8 @@ const Movies = ({ data, loading }) => {
         </Card>
       ))}
     </div>
+    </div>
+    
   );
 };
 
