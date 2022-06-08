@@ -44,12 +44,12 @@ const Movies = ({ data, loading, error}) => {
         }
       />
       <div id="cards">
-        {error !== undefined ? <Typography
+        {data === undefined || data.searchMovies.length === 0 ? <Typography
                     sx={{ fontSize: 14 }}
                     color="text.secondary"
                     gutterBottom
                   >
-                    Search for a movie!
+                    There is no movie here...
                   </Typography> : null}
       </div>
       <div id="cards">
