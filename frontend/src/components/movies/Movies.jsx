@@ -81,7 +81,11 @@ const Movies = ({ data, loading }) => {
               <Typography sx={{ mb: 1.5 }} color="text.secondary">
                 {movie?.genres?.[0]?.name}
               </Typography>
-            ) : null}
+            ) : (
+              <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                There is no category
+              </Typography>
+            )}
 
             <Typography variant="body2">{movie.score}</Typography>
           </CardContent>
