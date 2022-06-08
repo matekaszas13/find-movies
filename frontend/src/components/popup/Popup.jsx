@@ -6,16 +6,27 @@ import {
   DialogTitle,
   DialogContentText,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import GetImdbLinkFromWikipediaPageText from "../../apis/GetImdbLinkFromWikipediaPageText";
 
 const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
-  console.log(wikipediaPageId);
+  console.log(title);
+
+  const [imdbLink, setImdbLink] = useState();
+
+  useEffect(() => {
+    const fetchImdbLink = async () => {
+      return await GetImdbLinkFromWikipediaPageText(
+        `https://en.wikipedia.org/w/api.php?action=parse&prop=text&origin=*&formatversion=2&format=json&page=${title}`
+      );
+    };
+    fetchImdbLink().then((data) => {
+      setImdbLink(data)
+    });
+  }, [title]);
 
   return (
     <div>
-      {/* <Button variant="outlined" onClick={handleClickOpen}>
-        Open alert dialog
-      </Button> */}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -38,6 +49,12 @@ const Popup = ({ handleClose, open, title, description, wikipediaPageId }) => {
                   rel="noopener noreferrer"
                 >
                   Wikipedia
+                </a>
+              </Button>
+
+              <Button>
+                <a href={imdbLink} target="_blank" rel="noopener noreferrer">
+                  IMDB
                 </a>
               </Button>
             </DialogActions>
